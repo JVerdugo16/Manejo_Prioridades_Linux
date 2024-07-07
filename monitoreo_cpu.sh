@@ -1,8 +1,14 @@
 #!/bin/bash
 
+# Leer el correo del archivo
+if [ ! -f correo_admin.txt ]; then
+    echo "El archivo correo_admin.txt no existe. Ejecute primero pedir_correo.sh"
+    exit 1
+fi
+CORREO_ADMIN=$(cat correo_admin.txt)
+
 # Archivo de estadísticas
-ARCHIVO_ESTADISTICAS="/var/log/estadisticas_cpu.txt"
-CORREO_ADMIN="jhosfer2001@gmail.com"
+ARCHIVO_ESTADISTICAS="estadisticas_cpu.txt"
 
 # Comenzar a consumir recursos de CPU
 stress --cpu 4 --timeout 300 &
@@ -56,3 +62,4 @@ while true; do
 
     sleep 5
 done
+
