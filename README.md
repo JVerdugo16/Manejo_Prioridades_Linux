@@ -14,62 +14,37 @@ Primero lo primero, hay que habilitar Gmail para poder utilizarlo como servicio 
 
 #### Paso 1.2 - Instalar y configurar el software
 
-Actualizar el sistema y cambiarse a root para ejecutar los siguientes comandos:
+Descargar el archivo "Librerias.sh", en nuestra consola de Linux nos dirigimos al usuario root
 
 ```bash
 sudo su
-apt-get update
-apt-get upgrade
 ```
-Instalar los paquetes de software necesarios:
+Una vez en el usuario root, nos dirigimos a la carpeta donde se encuentra el archivo "Librerias.sh" y le damos permiso de ejecución
 ```bash
-apt-get install postfix mailutils libsasl2-2
-apt-get install ca-certificates libsasl2-modules
+chmod +x Librerias.sh
 ```
-Editar el archivo de configuración de postfix /etc/postfix/main.cf y reemplazar su contenido con las siguientes líneas:
+Finalmente ejecutamos el script
 ```bash
-cd /etc/postfix/
-nano main.cf
+./Librerias.sh
 ```
-```bash
-relayhost = [smtp.gmail.com]:587
-smtp_sasl_auth_enable = yes
-smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd
-smtp_sasl_security_options = noanonymous
-smtp_tls_CApath = /etc/ssl/certs
-smtpd_tls_CApath = /etc/ssl/certs
-smtp_use_tls = yes
-smtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt
-```
-Crear el achivo /etc/postfix/sasl_passwd el cual contendrá nuestro passcode generado en la parte 1:
-```bash
-nano /etc/postfix/sasl_passwd
-	[smtp.gmail.com]:587    usuario@gmail.com:passcode
-```
-Posteriormente hay que indicarle a postfix que utilice este archivo y lo encripte, lo cual generará un archivo adicional con terminación .db
-```bash
-postmap /etc/postfix/sasl_passwd
-```
-Ahora debemos cambiarle los permisos y para que solo root puede acceder a ellos:
-```bash
-chown root.root /etc/postfix/sasl_passwd*
-chmod 400 /etc/postfix/sasl_passwd
-```
-Por último reiniciamos el servicio con:
-```bash
-/etc/init.d/postfix reload
-```
-Para probar que este funcionando correctamente usamos el siguiente comando:
+
+Para probar que esté funcionando correctamente usamos el siguiente comando:
 
 ```bash
 echo "Prueba" | mail -s "Asunto" correo
 ```
-### Paso 2: Descargar el archivo "monitoreo_cpu.sh".
-
-### Paso 3: Abrir la consola de Linux y correr como super usuario con el siguiente comando:
+### Paso 2: Descargar los archivos "Manejo_prioridades.sh" y "monitoreo_cpu.sh".
+Regresamos a nuestro usuario principal y nos dirigimos donde descargamos los archivos y damos permisos de ejecución.
 ```bash
- sudo ./monitoreo_cpu.sh &
+chmod +x Manejo_prioridades.sh
+chmod +x monitoreo_cpu.sh
 ```
+### Paso 3: Ejecutar el script "Manejo_prioridades.sh"
+```bash
+./Manejo_prioridades.sh
+```
+Al momento de la ejecución encontraremos un menú principal en donde tendremos que ingresar el correo a donde recibiremos los mensajes.
+
 ### Paso 4: Revisar su correo.
 
 ### Paso 5: Para crear la gráfica del consumo del CPU descargamos el archivo "generar_grafica.sh" y lo corremos:
@@ -77,4 +52,6 @@ echo "Prueba" | mail -s "Asunto" correo
 chmod +x generar_grafica.sh
 sudo ./generar_grafica.sh
 ```	
-La grafica se creara en la misma ubicación del archivo "generar_grafica.sh".
+La grafica se creará en la misma ubicación del archivo "generar_grafica.sh".
+
+##### Nota: Se recomiendo tener todos los archivos en la misma carpeta.
