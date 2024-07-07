@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Archivo de estadísticas y archivo de datos para gnuplot
-ARCHIVO_ESTADISTICAS="/var/log/estadisticas_cpu.txt"
-ARCHIVO_DATOS="/var/log/datos_grafica_cpu.dat"
+ARCHIVO_ESTADISTICAS="estadisticas_cpu.txt"
+ARCHIVO_DATOS="datos_grafica_cpu.dat"
 
 # Limpiar el archivo de datos anterior
 > $ARCHIVO_DATOS
