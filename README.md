@@ -5,7 +5,7 @@ PASOS PARA CORRER EL SCRIPT
 
 PASO 1: Instalar Servicio de correo Gmail en Linux
 ---------------------------------------------------
-PASO 1 - HABILITAR GMAIL
+PASO 1.1 - HABILITAR GMAIL
 ------------------------
 Primero lo primero, hay que habilitar Gmail para poder utilizarlo como servicio de correo para Postfix:
 
@@ -13,23 +13,23 @@ Primero lo primero, hay que habilitar Gmail para poder utilizarlo como servicio 
 	* Generar un passcode para nuestro servicio.
 
 
-PASO 2 - INSTALAR Y CONFIGURAR EL SOFTWARE
+PASO 1.2 - INSTALAR Y CONFIGURAR EL SOFTWARE
 ------------------------------------------
 Actualizar el sistema y cambiarse a root para ejecutar los siguientes comandos:
 
-	* sudo su
-	* apt-get update
-	* apt-get upgrade
+	sudo su
+	apt-get update
+	apt-get upgrade
 
 Instalar los paquetes de software necesarios:
 
-	* apt-get install postfix mailutils libsasl2-2
-	* apt-get install ca-certificates libsasl2-modules  
+	apt-get install postfix mailutils libsasl2-2
+	apt-get install ca-certificates libsasl2-modules  
 
 Editar el archivo de configuración de postfix /etc/postfix/main.cf y reemplazar su contenido con las siguientes líneas:
 
-	* cd /etc/postfix/
-	* nano main.cf
+	cd /etc/postfix/
+	nano main.cf
 
 	relayhost = [smtp.gmail.com]:587
 	smtp_sasl_auth_enable = yes
@@ -62,11 +62,7 @@ Por último reiniciamos el servicio con:
 Para probar que este funcionando correctamente usamos el siguiente comando:
 
 	* echo "Prueba" | mail -s "Asunto" correo
-
-
-
-
-
+------------------------------------------------------------------------------------------------
 
 PASO 2: Descargar el archivo "monitoreo_cpu.sh".
 
