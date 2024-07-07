@@ -64,15 +64,15 @@ Para probar que este funcionando correctamente usamos el siguiente comando:
 ```bash
 echo "Prueba" | mail -s "Asunto" correo
 ```
-### PASO 2: Descargar el archivo "monitoreo_cpu.sh".
+### Paso 2: Descargar el archivo "monitoreo_cpu.sh".
 
-### PASO 3: Abrir la consola de Linux y correr como super usuario con el siguiente comando:
+### Paso 3: Abrir la consola de Linux y correr como super usuario con el siguiente comando:
 ```bash
  sudo ./monitoreo_cpu.sh &
 ```
-### PASO 4: Revisar su correo.
+### Paso 4: Revisar su correo.
 
-### PASO 5: Para crear la gráfica del consumo del CPU descargamos el archivo "generar_grafica.sh" y lo corremos:
+### Paso 5: Para crear la gráfica del consumo del CPU descargamos el archivo "generar_grafica.sh" y lo corremos:
 ```bash
 chmod +x generar_grafica.sh
 sudo ./generar_grafica.sh
